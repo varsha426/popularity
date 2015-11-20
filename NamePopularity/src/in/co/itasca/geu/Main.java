@@ -49,12 +49,19 @@ public class Main extends javax.swing.JFrame {
         jButtonSearch = new javax.swing.JButton();
         jButtonReset = new javax.swing.JButton();
         polpularityPane = new javax.swing.JPanel();
+        yearComboBox1 = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setIconImages(null);
         setLocationByPlatform(true);
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 0));
 
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Please Select year");
@@ -129,7 +136,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(femaleCheckBox)
                     .addComponent(maleCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bothCheckBox))
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -174,15 +181,6 @@ public class Main extends javax.swing.JFrame {
             .addGroup(populationTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(populationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(populationTabLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(27, 27, 27)
-                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, populationTabLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(populationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +191,16 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jButtonReset)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonSearch)
-                                .addGap(204, 204, 204))))))
+                                .addGap(204, 204, 204))))
+                    .addGroup(populationTabLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(27, 27, 27)
+                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(populationTabLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +220,9 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(populationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(populationTabLayout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(52, 52, 52))
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(populationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,27 +230,56 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jButtonReset))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Population", populationTab);
 
+        yearComboBox1.setForeground(new java.awt.Color(51, 51, 51));
+        yearComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", " " }));
+
         jLabel3.setText("Popularity");
+
+        jLabel4.setText("Select Year :");
+
+        jLabel5.setText("Enter A Name :");
+
+        jButton1.setText("Search");
 
         javax.swing.GroupLayout polpularityPaneLayout = new javax.swing.GroupLayout(polpularityPane);
         polpularityPane.setLayout(polpularityPaneLayout);
         polpularityPaneLayout.setHorizontalGroup(
             polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(polpularityPaneLayout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(jLabel3)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(50, 50, 50)
+                .addComponent(yearComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addGroup(polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, polpularityPaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(255, 255, 255))
         );
         polpularityPaneLayout.setVerticalGroup(
             polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(polpularityPaneLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 495, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(0, 402, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Popularity", polpularityPane);
@@ -360,20 +398,25 @@ jTable.setVisible(true);
     private javax.swing.JCheckBox bothCheckBox;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox femaleCheckBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonReset;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JCheckBox maleCheckBox4;
     private javax.swing.JPanel polpularityPane;
     private javax.swing.JPanel populationTab;
     private javax.swing.JSpinner rankedSpinner;
     private javax.swing.JComboBox yearComboBox;
+    private javax.swing.JComboBox yearComboBox1;
     // End of variables declaration//GEN-END:variables
 }
