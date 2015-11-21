@@ -4,10 +4,18 @@
  * and open the template in the editor.
  */
 package in.co.itasca.geu;
-
+ 
 import in.co.itasca.geu.bl.PopularityBLModel;
 import in.co.itasca.geu.model.Popularity;
 import in.co.itasca.geu.model.PopulatryTableModel;
+import java.awt.Component;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.util.Rotation;
 
 /**
  *
@@ -51,7 +59,6 @@ public class Main extends javax.swing.JFrame {
         polpularityPane = new javax.swing.JPanel();
         yearComboBox1 = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -235,52 +242,28 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Population", populationTab);
 
+        polpularityPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         yearComboBox1.setForeground(new java.awt.Color(51, 51, 51));
         yearComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", " " }));
+        polpularityPane.add(yearComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 270, -1));
 
         jLabel3.setText("Popularity");
+        polpularityPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 495, 630, -1));
 
         jLabel4.setText("Select Year :");
+        polpularityPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 10));
 
         jLabel5.setText("Enter A Name :");
+        polpularityPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
         jButton1.setText("Search");
-
-        javax.swing.GroupLayout polpularityPaneLayout = new javax.swing.GroupLayout(polpularityPane);
-        polpularityPane.setLayout(polpularityPaneLayout);
-        polpularityPaneLayout.setHorizontalGroup(
-            polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(polpularityPaneLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(50, 50, 50)
-                .addComponent(yearComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
-                .addGroup(polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, polpularityPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(255, 255, 255))
-        );
-        polpularityPaneLayout.setVerticalGroup(
-            polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(polpularityPaneLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(32, 32, 32)
-                .addGroup(polpularityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(yearComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(0, 402, Short.MAX_VALUE))
-        );
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        polpularityPane.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 150, 20));
 
         jTabbedPane1.addTab("Popularity", polpularityPane);
 
@@ -358,6 +341,30 @@ jTable.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonResetActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+ PieDataset dataset = createDataset();
+        // based on the dataset we create the chart
+        JFreeChart chart = createChart(dataset, "Name Popularity");
+        // we put the chart into a panel
+        ChartPanel chartPanel = new ChartPanel(chart);
+        // default size
+     //   chartPanel.setPreferredSize(new java.awt.Dimension(100, 200));
+        // add it to our application
+     //   polpularityPane.add(chartPanel);
+     //   setContentPane(chartPanel);
+//jPanel3.add(chartPanel).setVisible(true);
+//jPanel3.setLayout(new java.awt.BorderLayout());
+//jPanel3.validate();
+//jPanel3.repaint();
+// jTabbedPane1.add(jPanel3);
+     jTabbedPane1.add(chartPanel,"Name1");
+      
+        
+//        setContentPane(chartPanel);
+ 
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -392,6 +399,39 @@ jTable.setVisible(true);
             }
         });
     }
+    
+    
+    
+     private  PieDataset createDataset() {
+         DefaultPieDataset result = new DefaultPieDataset();
+        result.setValue("2013", 29);
+        result.setValue("2012", 20);
+        result.setValue("2011", 51);
+        return result;
+        
+    }
+    
+    /**
+     * Creates a chart
+     */
+
+    private JFreeChart createChart(PieDataset dataset, String title) {
+        
+        JFreeChart chart = ChartFactory.createPieChart3D(title,          // chart title
+            dataset,                // data
+            true,                   // include legend
+            true,
+            false);
+
+        PiePlot3D plot = (PiePlot3D) chart.getPlot();
+        plot.setStartAngle(290);
+        plot.setDirection(Rotation.CLOCKWISE);
+        plot.setForegroundAlpha(0.5f);
+        return chart;
+        
+    }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel RankedTopLabel3;
@@ -411,7 +451,6 @@ jTable.setVisible(true);
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JCheckBox maleCheckBox4;
     private javax.swing.JPanel polpularityPane;
     private javax.swing.JPanel populationTab;
