@@ -7,7 +7,9 @@ package in.co.itasca.geu.bl;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import in.co.itasca.geu.Main;
+import in.co.itasca.geu.model.GraphData;
 import in.co.itasca.geu.model.Popularity;
+import in.co.itasca.geu.model.PopularityGraphDM;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +19,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -73,6 +76,8 @@ public class PopularityBLModel {
             
             
         }
+        
+        
       
 //    StringBuffer sb = new StringBuffer();
 //        try {
@@ -170,5 +175,55 @@ public class PopularityBLModel {
         }
         return pModels;
     }
+
+    public  HashMap<String, PopularityGraphDM> getSearchedName(String year, String name) {
+        HashMap<String, PopularityGraphDM> collection = new HashMap<String, PopularityGraphDM>();
+        int yearInt = Integer.parseInt(year);
+        
+        while(yearInt<=2013){
+        Popularity[] popularNameofYear = getPopularNames(  name,   String.valueOf(yearInt));
+            for (int i = 0; i < popularNameofYear.length; i++) {
+                Popularity popularity = popularNameofYear[i];
+                String dmName = popularity.getName();
+               PopularityGraphDM pgdm = collection.get(dmName);
+               if(pgdm==null)
+                   pgdm= new PopularityGraphDM();
+                GraphData gd = new GraphData();
+                gd.setName(String.valueOf(yearInt));
+                String amt = popularity.getAmount();
+                gd.setAmount(amt);
+                
+                pgdm.add(gd);
+                    collection.put(dmName  , pgdm);
+        
+            }
+        
+        yearInt++;
+        
+        }
+        return  collection;
+            }
+
+    private Popularity[] getPopularNames(String name, String year) {
+        Collection<Popularity> collection = new ArrayList<Popularity>();
+        Popularity[] models  = getData(false, false, true, year, new Integer(0));
+        
+        for (int i = 0; i < models .length; i++) {
+            Popularity popularity = models[i];
+            if(popularity.getName().toUpperCase().contains(name.toUpperCase())){
+            collection.add(popularity);
+            }
+            
+        }
+        
+        int len = collection.size();
+        Popularity[] datas= new Popularity[len];
+        collection.toArray(datas);
+        return datas;
+        
+            }
+    
+    
+    
     
 }

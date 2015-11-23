@@ -6,9 +6,14 @@
 package in.co.itasca.geu;
  
 import in.co.itasca.geu.bl.PopularityBLModel;
+import in.co.itasca.geu.model.GraphData;
+import in.co.itasca.geu.model.GraphListTableModel;
 import in.co.itasca.geu.model.Popularity;
+import in.co.itasca.geu.model.PopularityGraphDM;
 import in.co.itasca.geu.model.PopulatryTableModel;
 import java.awt.Component;
+import java.util.HashMap;
+import java.util.Iterator;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -62,6 +67,11 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        particalInput = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -246,7 +256,7 @@ public class Main extends javax.swing.JFrame {
 
         yearComboBox1.setForeground(new java.awt.Color(51, 51, 51));
         yearComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", " " }));
-        polpularityPane.add(yearComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 270, -1));
+        polpularityPane.add(yearComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 70, -1));
 
         jLabel3.setText("Popularity");
         polpularityPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 495, 630, -1));
@@ -263,7 +273,40 @@ public class Main extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        polpularityPane.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 150, 20));
+        polpularityPane.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 70, 20));
+        polpularityPane.add(particalInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 180, -1));
+
+        jLabel6.setText("Enter Name");
+        polpularityPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Name", "Amount"
+            }
+        ));
+        jTable2.setFillsViewportHeight(true);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        polpularityPane.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 530, 260));
+
+        jButton2.setText("Reset");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        polpularityPane.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
         jTabbedPane1.addTab("Popularity", polpularityPane);
 
@@ -343,27 +386,77 @@ jTable.setVisible(true);
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
- PieDataset dataset = createDataset();
-        // based on the dataset we create the chart
-        JFreeChart chart = createChart(dataset, "Name Popularity");
-        // we put the chart into a panel
-        ChartPanel chartPanel = new ChartPanel(chart);
-        // default size
-     //   chartPanel.setPreferredSize(new java.awt.Dimension(100, 200));
-        // add it to our application
-     //   polpularityPane.add(chartPanel);
-     //   setContentPane(chartPanel);
-//jPanel3.add(chartPanel).setVisible(true);
-//jPanel3.setLayout(new java.awt.BorderLayout());
-//jPanel3.validate();
-//jPanel3.repaint();
-// jTabbedPane1.add(jPanel3);
-     jTabbedPane1.add(chartPanel,"Name1");
+        
+        String inputText = particalInput.getText();
+       boolean result = inputText.contains("*");
+       
+       String year  = (String)yearComboBox1.getSelectedItem();
+  
+       if(inputText.length()==0)
+           return;
+       
+       
+        PopularityBLModel bl = new PopularityBLModel();
+//        HashMap<String, PopularityGraphDM>  
+                searchedPopularName = bl.getSearchedName(year,inputText );
+        java.util.Set<String> keyset= searchedPopularName.keySet();       
       
+        int count = keyset.size();
+         String[] columnHeaders= {"Name" };
+         GraphListTableModel mapModel = new GraphListTableModel(count, columnHeaders);
+        int location =0;
+        for (Iterator<String> iterator = keyset.iterator(); iterator.hasNext();) {
+            String next = iterator.next();
+            mapModel.setValueAt(next , location, 0);
+           location++; 
+        }
+      jTable2.setVisible(true);
+        jTable2.setModel(mapModel);
+       
+    
         
 //        setContentPane(chartPanel);
  
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+       int len = jTabbedPane1.getComponents().length;
+      
+       while (len>2){
+        jTabbedPane1.remove(len-1);
+        len = jTabbedPane1.getComponents().length;
+       }
+       jTable2.removeAll();
+         jTable2.invalidate();
+         jTable2.setVisible(false);
+        
+        jTable2.repaint();
+        jScrollPane2.repaint();
+       
+// jTable2.setVisible(false);
+
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+       int row = jTable2.rowAtPoint( evt.getPoint());
+       String value = (String)jTable2.getValueAt(row, 0);
+       
+       PopularityGraphDM gt =(PopularityGraphDM) searchedPopularName.get(value);
+        GraphData[] array =gt.getAsArray();
+        
+       
+           
+        PieDataset dataset = createDataset(array);
+        // based on the dataset we create the chart
+        JFreeChart chart = createChart(dataset, "Name Popularity of "+value);
+       
+        ChartPanel chartPanel = new ChartPanel(chart);
+  
+         jTabbedPane1.add(chartPanel,value);
+      
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -402,11 +495,28 @@ jTable.setVisible(true);
     
     
     
-     private  PieDataset createDataset() {
+     private  PieDataset createDataset(GraphData[] models) {
          DefaultPieDataset result = new DefaultPieDataset();
-        result.setValue("2013", 29);
-        result.setValue("2012", 20);
-        result.setValue("2011", 51);
+         int total =0;
+         for (int i = 0; i < models.length; i++) {
+             GraphData model = models[i];
+             String amountStr =model.getAmount();
+             int amount = Integer.parseInt(amountStr);
+             total= total+amount;
+         }
+         for (int i = 0; i < models.length; i++) {
+             GraphData model = models[i];
+             
+             String amountStr =model.getAmount();
+             int amount = Integer.parseInt(amountStr);
+             int percentage = amount*100/total;
+             result.setValue(model.getName(), percentage);
+             
+         }
+         
+//        result.setValue("2013", 29);
+//        result.setValue("2012", 20);
+//        result.setValue("2011", 51);
         return result;
         
     }
@@ -432,13 +542,14 @@ jTable.setVisible(true);
     }
 
 
-
+private  HashMap<String, PopularityGraphDM>   searchedPopularName = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel RankedTopLabel3;
     private javax.swing.JCheckBox bothCheckBox;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox femaleCheckBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonReset;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabel1;
@@ -446,12 +557,16 @@ jTable.setVisible(true);
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable;
+    private javax.swing.JTable jTable2;
     private javax.swing.JCheckBox maleCheckBox4;
+    private javax.swing.JTextField particalInput;
     private javax.swing.JPanel polpularityPane;
     private javax.swing.JPanel populationTab;
     private javax.swing.JSpinner rankedSpinner;
