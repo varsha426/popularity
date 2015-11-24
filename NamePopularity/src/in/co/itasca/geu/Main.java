@@ -68,6 +68,9 @@ public class Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         particalInput = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        femaleCheckBox1 = new javax.swing.JCheckBox();
+        maleCheckBox5 = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -126,7 +129,6 @@ public class Main extends javax.swing.JFrame {
 
         buttonGroup1.add(bothCheckBox);
         bothCheckBox.setForeground(new java.awt.Color(51, 51, 51));
-        bothCheckBox.setSelected(true);
         bothCheckBox.setText("Both");
 
         buttonGroup1.add(maleCheckBox4);
@@ -237,17 +239,17 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(populationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(populationTabLayout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(52, 52, 52))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(9, 9, 9)))
+                        .addGap(70, 70, 70)
                         .addGroup(populationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSearch)
                             .addComponent(jButtonReset))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Population", populationTab);
@@ -256,7 +258,7 @@ public class Main extends javax.swing.JFrame {
 
         yearComboBox1.setForeground(new java.awt.Color(51, 51, 51));
         yearComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", " " }));
-        polpularityPane.add(yearComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 70, -1));
+        polpularityPane.add(yearComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 70, -1));
 
         jLabel3.setText("Popularity");
         polpularityPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 495, 630, -1));
@@ -273,11 +275,45 @@ public class Main extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        polpularityPane.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 70, 20));
-        polpularityPane.add(particalInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 180, -1));
+        polpularityPane.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 70, 20));
+        polpularityPane.add(particalInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 180, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        buttonGroup1.add(femaleCheckBox1);
+        femaleCheckBox1.setForeground(new java.awt.Color(51, 51, 51));
+        femaleCheckBox1.setText("Female");
+
+        buttonGroup1.add(maleCheckBox5);
+        maleCheckBox5.setForeground(new java.awt.Color(51, 51, 51));
+        maleCheckBox5.setSelected(true);
+        maleCheckBox5.setText("Male");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(femaleCheckBox1)
+                .addGap(18, 18, 18)
+                .addComponent(maleCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(femaleCheckBox1)
+                    .addComponent(maleCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        polpularityPane.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 200, -1));
 
         jLabel6.setText("Enter Name");
-        polpularityPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        polpularityPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -298,7 +334,7 @@ public class Main extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        polpularityPane.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 530, 260));
+        polpularityPane.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 530, 300));
 
         jButton2.setText("Reset");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,7 +342,7 @@ public class Main extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        polpularityPane.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
+        polpularityPane.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
 
         jTabbedPane1.addTab("Popularity", polpularityPane);
 
@@ -389,16 +425,23 @@ jTable.setVisible(true);
         
         String inputText = particalInput.getText();
        boolean result = inputText.contains("*");
-       
        String year  = (String)yearComboBox1.getSelectedItem();
-  
        if(inputText.length()==0)
            return;
+       
+       boolean femaleChoice = femaleCheckBox1.isSelected();
+       boolean maleChoice = maleCheckBox5.isSelected();
+       boolean sexChoiceforMale=femaleChoice;
+      
+       if(maleChoice==false)
+       sexChoiceforMale=false;
+       if(femaleChoice==false)
+           sexChoiceforMale=true;
        
        
         PopularityBLModel bl = new PopularityBLModel();
 //        HashMap<String, PopularityGraphDM>  
-                searchedPopularName = bl.getSearchedName(year,inputText );
+                searchedPopularName = bl.getSearchedName(year,inputText, sexChoiceforMale );
         java.util.Set<String> keyset= searchedPopularName.keySet();       
       
         int count = keyset.size();
@@ -548,6 +591,7 @@ private  HashMap<String, PopularityGraphDM>   searchedPopularName = null;
     private javax.swing.JCheckBox bothCheckBox;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox femaleCheckBox;
+    private javax.swing.JCheckBox femaleCheckBox1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonReset;
@@ -560,12 +604,14 @@ private  HashMap<String, PopularityGraphDM>   searchedPopularName = null;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTable jTable2;
     private javax.swing.JCheckBox maleCheckBox4;
+    private javax.swing.JCheckBox maleCheckBox5;
     private javax.swing.JTextField particalInput;
     private javax.swing.JPanel polpularityPane;
     private javax.swing.JPanel populationTab;

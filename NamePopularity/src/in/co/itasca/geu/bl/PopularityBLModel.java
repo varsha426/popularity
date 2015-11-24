@@ -46,6 +46,8 @@ public class PopularityBLModel {
            return fileName;
     }
     public Popularity[] getData(boolean male, boolean female, boolean both, String year, Integer rank){
+        try {
+            
         Popularity[] pModels=null;
         if (female){
             String fileName = getFileName(male, female, year);
@@ -78,64 +80,21 @@ public class PopularityBLModel {
         }
         
         
-      
-//    StringBuffer sb = new StringBuffer();
-//        try {
-//            
-//            sb.append("/resources/");
-//           if (male){
-//           sb.append("male_cy");
-//             }else if (female){
-//     sb.append("female_cy");
-//             
-//             }
-//           
-//           sb.append(year);
-//           sb.append("_top.csv");
-//           String fileName = sb.toString();
-//            Collection<Popularity> coll = new ArrayList<Popularity>();
-//           
-//           InputStream myin = getClass().getResourceAsStream(fileName);
-//           Scanner sc = new Scanner(myin);
-//           String line = sc.nextLine();
-//            while (sc.hasNext()) {
-//                String next = sc.next();
-//                String[] values = next.split(",");
-//                Popularity pmodel = new Popularity();
-//                String[] nme = values[0].split("\"");
-//                pmodel.setName(nme[1]);
-//                
-//                     String[] val = values[1].split("\"");
-//                pmodel.setAmount(val[1]);
-//                
-//                     String[] pos = values[2].split("\"");
-//                pmodel.setPosition(pos[1]);
-//               
-//                if(rank==0)
-//                coll.add(pmodel);
-//                else if (Integer.parseInt(pmodel.getPosition())<=rank.intValue() )
-//                  coll.add(pmodel);
-//                int i=0;
-//            }
-//            int size =coll.size();
-//                
-//            Popularity[] pModels = new Popularity[size];
-//            coll.toArray(pModels);
+        
+    
             
          return pModels;
            
             
             
+            } catch (Exception e) {
             
+            int i =0;
+        }
            
            
-           
-           
-//        } catch (Exception e) {
-//            
-//                return  null;
-//        }
-        
+           return null;
+      
    
     }
     
@@ -176,12 +135,21 @@ public class PopularityBLModel {
         return pModels;
     }
 
-    public  HashMap<String, PopularityGraphDM> getSearchedName(String year, String name) {
+    public  HashMap<String, PopularityGraphDM> getSearchedName(String year, String name, boolean sexChoiceofMale) {
+        
+        
         HashMap<String, PopularityGraphDM> collection = new HashMap<String, PopularityGraphDM>();
+        try {
+            
+
         int yearInt = Integer.parseInt(year);
         
+        
         while(yearInt<=2013){
-        Popularity[] popularNameofYear = getPopularNames(  name,   String.valueOf(yearInt));
+        Popularity[] popularNameofYear = getPopularNames(  name,   String.valueOf(yearInt), sexChoiceofMale);
+            try {
+                
+           
             for (int i = 0; i < popularNameofYear.length; i++) {
                 Popularity popularity = popularNameofYear[i];
                 String dmName = popularity.getName();
@@ -197,17 +165,31 @@ public class PopularityBLModel {
                     collection.put(dmName  , pgdm);
         
             }
+             } catch (Exception e) {
+            }
         
         yearInt++;
         
         }
         return  collection;
+        
+                } catch (Exception e) {
+                    return null;
+                    
+        }
             }
 
-    private Popularity[] getPopularNames(String name, String year) {
-        Collection<Popularity> collection = new ArrayList<Popularity>();
-        Popularity[] models  = getData(false, false, true, year, new Integer(0));
+    private Popularity[] getPopularNames(String name, String year, boolean  sexChoiceforMale) {
+        try {
+     
         
+        Collection<Popularity> collection = new ArrayList<Popularity>();
+        Popularity[] models  =null;
+        if(sexChoiceforMale){
+          models  = getData(true, false, false, year, new Integer(0));
+        } else {
+             models  = getData(false, true, false, year, new Integer(0));
+        }
         for (int i = 0; i < models .length; i++) {
             Popularity popularity = models[i];
             if(popularity.getName().toUpperCase().contains(name.toUpperCase())){
@@ -220,7 +202,10 @@ public class PopularityBLModel {
         Popularity[] datas= new Popularity[len];
         collection.toArray(datas);
         return datas;
-        
+              
+        } catch (Exception e) {
+            return null;
+        } 
             }
     
     
